@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext, useMemo} from 'react'
 import dayjs from 'dayjs';
 import relativetime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration'
@@ -12,6 +12,7 @@ dayjs.extend(duration);
 
 function Counter() {
   const {dispatch} = useContext(Context)
+  const deadline = useMemo(() => Date.now() + 119000,[])
 const style = {
   "--value": 100,
   "--size": "6rem",
@@ -25,7 +26,7 @@ const style = {
       style={style}
     >
       <Countdown
-        date={Date.now() + 119000}
+        date={deadline}
         onComplete={() => dispatch({ type: QuizReducerTypes.SET_LOOSE })}
         renderer={(props) => <div>{props.minutes}:{props.seconds}</div>}
         zeroPadTime={2}
