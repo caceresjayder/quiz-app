@@ -20,6 +20,24 @@ const Quiz = () => {
   const { question, options, correct, table_values, ritmo, timer } =
     questions[quiz_actual];
 
+
+    useEffect(() => {
+      if (timer && timer === "continue") {
+        return;
+      } else if (timer) {
+        const newDeadline = Date.now() + timer * 1000;
+        dispatch({
+          type: QuizReducerTypes.SET_COUNTDOWN,
+          payload: { countdown: newDeadline },
+        });
+      } else {
+        dispatch({
+          type: QuizReducerTypes.SET_COUNTDOWN,
+          payload: { countdown: null },
+        });
+      }
+    }, [timer, dispatch]);
+
   const setCicle = () => {
     if (ciclos.length - 1 === ciclo_actual) {
       dispatch({ type: QuizReducerTypes.SET_WIN });

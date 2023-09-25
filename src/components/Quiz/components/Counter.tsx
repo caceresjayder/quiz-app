@@ -27,31 +27,17 @@ const style = {
 } as React.CSSProperties;
 
 
-useEffect(() => {
-  if (timer && timer === "continue") {
-    // No actualizamos `deadline` si `timer` es 'continue'
-    return;
-  }
-  else if(timer){
-    const newDeadline = Date.now() + (timer * 1000);
-    dispatch({
-      type: QuizReducerTypes.SET_COUNTDOWN,
-      payload: { countdown: newDeadline },
-    });
-  }
-
-}, [timer, dispatch]);
-
-  if(timer && !loose && !win){
+  if(countdown && !loose && !win){
       return (
         <Countdown
-          date={countdown ?? Date.now() + +timer * 1000}
+          date={countdown}
           precision={3}
           onComplete={() => dispatch({ type: QuizReducerTypes.SET_LOOSE })}
           renderer={(props) => (
             <div>
               <div
                 className={`radial-progress ${
+                  //@ts-ignore
                   props.total < (+timer > 10 ? 30000 : 5000)
                     ? "bg-red-400 border-red-400 vibrate-1"
                     : "bg-green-400 border-green-400"
