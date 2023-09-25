@@ -1,14 +1,13 @@
 export type question = {
   ritmo?: string;
+  timer?: number | 'continue';
   question: string;
   options: string[];
   correct: string;
-  table_column: string;
-  set_value: string;
+  table_values: TableRow;
 };
 
 export type ciclo = {
-  dos_minutos?: boolean;
   questions: question[];
 };
 
@@ -44,7 +43,8 @@ export type QuizState = {
   loose: boolean;
   ciclo_actual: number;
   quiz_actual: number;
-  quest_idx: number
+  quest_idx: number;
+  countdown: Date | null
 };
 
 const QuizState: QuizState = {
@@ -91,7 +91,8 @@ const QuizState: QuizState = {
   win: false,
   ciclo_actual: 0,
   quiz_actual: 0,
-  quest_idx: 0
+  quest_idx: 0,
+  countdown: null
 };
 
 export default QuizState;

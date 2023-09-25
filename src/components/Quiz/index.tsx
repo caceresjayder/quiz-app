@@ -16,8 +16,8 @@ const Quiz = () => {
   const { ciclo_actual, loose, win, quest, quiz_actual, table, quest_idx } =
     state.quiz_state;
   const { ciclos, name, description } = quest;
-  const { questions, dos_minutos } = ciclos[ciclo_actual];
-  const { question, options, correct, table_column, set_value } =
+  const { questions } = ciclos[ciclo_actual];
+  const { question, options, correct, table_values, ritmo, timer } =
     questions[quiz_actual];
 
   const setCicle = () => {
@@ -56,8 +56,7 @@ const Quiz = () => {
       dispatch({
         type: QuizReducerTypes.SET_TABLE_VALUE,
         payload: {
-          column: table_column,
-          value: set_value,
+          table_values: table_values,
           ciclo: ciclo_actual + 1,
         },
       });
@@ -65,8 +64,6 @@ const Quiz = () => {
       dispatch({ type: QuizReducerTypes.SET_LOOSE });
     }
   };
-
-  useEffect(() => {}, [dos_minutos]);
 
   return (
     <div className="">
@@ -122,12 +119,9 @@ const Quiz = () => {
               )}
             </div>
           </div>
-
-          {dos_minutos && (
-            <div className="flex flex-col w-1/4 items-center justify-center">
-              <Counter />
-            </div>
-          )}
+          <div className="flex flex-col w-1/4 items-center justify-center">
+            <Counter />
+          </div>
         </div>
 
         <form
@@ -152,8 +146,7 @@ const Quiz = () => {
                     value={option}
                     className="radio radio-success"
                   />
-                  {option.charAt(0).toUpperCase() +
-                    option.slice(1).toLowerCase()}
+                  {option}
                 </label>
               );
             })}

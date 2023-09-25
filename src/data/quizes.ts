@@ -1,4 +1,21 @@
-const quizes = [
+import { TableRow, quest } from "@/Libs/States/QuizState";
+
+type quizes = {
+  name: string;
+  description: string;
+  ciclos: {
+    questions: {
+      ritmo?: string;
+      timer?: number | 'continue';
+      question: string,
+      options: string[];
+      correct: string;
+      table_values: Partial<TableRow>;
+    }[];
+  }[];
+}[];
+
+const quizes: quizes = [
   {
     name: "Caso Clinico #1",
     description: "",
@@ -7,18 +24,22 @@ const quizes = [
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O ritmo é, o que fazer?",
             options: ["chocar", "comprimir", "preparar epinefrina"],
             correct: "chocar",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+              Ritmo: "FV",
+            },
           },
           {
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
             question: "A RCP FOI INICIADA. O que fazer agora?",
@@ -28,35 +49,39 @@ const quizes = [
               "buscar causas",
             ],
             correct: "Estabelecer o coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
             question: "O COACH ESTÁ ATUANDO.O que fazer agora?",
             options: ["preparar epinefrina", "fazer epinefrina", "ver ritmo"],
             correct: "preparar epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O ritmo é, o que fazer?",
             options: ["chocar", "comprimir", "preparar epinefrina"],
             correct: "chocar",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
             question: "A RCP FOI INICIADA. O que fazer agora?",
@@ -66,8 +91,9 @@ const quizes = [
               "buscar causas",
             ],
             correct: "Checar com o coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
             question: "O COACH ESTÁ ATUANDO.O que fazer agora?",
@@ -77,16 +103,17 @@ const quizes = [
               "ver ritmo",
             ],
             correct: "Administrar epinefrina e preparar Amiodarona 300",
-            table_column: "Drogas",
-            set_value: "Epi administrada e Amio 300 prep",
+            table_values: {
+              Drogas: "Epi administrada e Amio 300 prep",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "LR",
+            timer: 10,
             question: "O ritmo é, o que fazer agora?",
             options: [
               "Checar Cabos, ganhos e derivações",
@@ -94,11 +121,13 @@ const quizes = [
               "Comprimir",
             ],
             correct: "Checar Cabos, ganhos e derivações",
-            table_column: "Ritmo",
-            set_value: "LR",
+            table_values: {
+              Ritmo: "LR",
+            },
           },
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é, o que fazer agora?",
             options: [
               "checar pulso",
@@ -106,10 +135,12 @@ const quizes = [
               "Começar protocolo de RCE",
             ],
             correct: "checar pulso",
-            table_column: "Ritmo",
-            set_value: "LR -> AESP",
+            table_values: {
+              Ritmo: "LR -> AESP",
+            },
           },
           {
+            timer: 100,
             question: "Não tem pulso. O que fazer agora?",
             options: [
               "Começar RCP",
@@ -117,10 +148,12 @@ const quizes = [
               "Fazer Epinefrina",
             ],
             correct: "Começar RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "A RCP FOI INICIADA. O que fazer agora?",
             options: [
               "Checar com o coach",
@@ -128,10 +161,12 @@ const quizes = [
               "buscar causas",
             ],
             correct: "Checar com o coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "O COACH ESTÁ ATUANDO. O que fazer agora?",
             options: [
               "Preparar epinefrina",
@@ -139,23 +174,26 @@ const quizes = [
               "Fazer epinefrina",
             ],
             correct: "Preparar epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
           {
+            timer: "continue",
             question: "VOCÊ ESTÁ INDO BEM. O que ainda falta fazer?",
             options: ["checar causas", "parar RCP", "fazer Amiodarona"],
             correct: "checar causas",
-            table_column: "Outros",
-            set_value: "Causas",
+            table_values: {
+              Outros: "Causas",
+            },
           },
         ],
       },
       {
-        dos_minutos: "true",
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é, O que fazer agora?",
             options: [
               "Checar pulso",
@@ -163,15 +201,17 @@ const quizes = [
               "Fazer epinefrina",
             ],
             correct: "Checar pulso",
-            table_column: "Ritmo",
-            set_value: "AECP",
+            table_values: {
+              Ritmo: "AECP",
+            },
           },
           {
             question: "TEM PULSO. O que fazer agora?",
             options: ["Iniciar protocolo de RCE", "Chocar", "Comprimir"],
             correct: "Iniciar protocolo de RCE",
-            table_column: "RCP",
-            set_value: "Parou",
+            table_values: {
+              RCP: "Parou",
+            },
           },
         ],
       },
@@ -186,6 +226,7 @@ const quizes = [
         questions: [
           {
             ritmo: "TV",
+            timer: 10,
             question: "O ritmo é. O que fazer?",
             options: [
               "Checar pulso",
@@ -193,11 +234,13 @@ const quizes = [
               "Cardioverter com 100 J",
             ],
             correct: "Checar pulso",
-            table_column: "Ritmo",
-            set_value: "TVSP",
+            table_values: {
+              Ritmo: "TVSP",
+            },
           },
           {
             ritmo: "TV",
+            timer: 10,
             question: "O RITMO É. O que fazer agora?",
             options: [
               "Desfibrilar com 200 J",
@@ -205,15 +248,17 @@ const quizes = [
               "Comprimir",
             ],
             correct: "Desfibrilar com 200 J",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
             question: "RCP INICIADA. O que fazer agora?",
@@ -223,8 +268,9 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Estabelecer o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
             question: "COACH ATUANDO. O que fazer agora?",
@@ -234,28 +280,32 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Preparar epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O ritmo agora é. O que fazer agora?",
             options: ["Chocar", "administrar epinefrina", "comprimir"],
             correct: "Chocar",
-            table_column: "Ritmo",
-            set_value: "FV",
+            table_values: {
+              Ritmo: "FV",
+            },
           },
           {
+            timer: 110,
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
             question: "RCP INICIADA. O que fazer agora?",
@@ -265,10 +315,12 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Administrar Epinefrina e Preparar 300 mg de Amiodarona",
@@ -276,16 +328,17 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Administrar Epinefrina e Preparar 300 mg de Amiodarona",
-            table_column: "Drogas",
-            set_value: "Epi administrada e Amio 300 prep",
+            table_values: {
+              Drogas: "Epi administrada e Amio 300 prep",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "checar pulso",
@@ -293,21 +346,25 @@ const quizes = [
               "Começar protocolo de RCE",
             ],
             correct: "checar pulso",
-            table_column: "Ritmo",
-            set_value: "AESP",
+            table_values: {
+              Ritmo: "AESP",
+            },
           },
           {
             question: "RCP INICIADA. O que fazer agora?",
+            timer: 110,
             options: [
               "Checar o Coach",
               "Administrar amiodarona",
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Preparar Epinefrina",
@@ -315,23 +372,26 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Preparar Epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
           {
+            timer: "continue",
             question: "VOCÊ ESTÁ INDO BEM. O que ainda falta fazer?",
             options: ["Checar causas", "Parar RCP", "Fazer Amiodarona"],
             correct: "Checar causas",
-            table_column: "Outros",
-            set_value: "Causas",
+            table_values: {
+              Outros: "Causas",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "checar pulso",
@@ -339,15 +399,17 @@ const quizes = [
               "Fazer epinefrina",
             ],
             correct: "checar pulso",
-            table_column: "Ritmo",
-            set_value: "AECP",
+            table_values: {
+              Ritmo: "AECP",
+            },
           },
           {
             question: "TEM PULSO. O que fazer agora?",
             options: ["Iniciar protocolo de RCE", "Chocar", "Comprimir"],
             correct: "Iniciar protocolo de RCE",
-            table_column: "RCP",
-            set_value: "Parou",
+            table_values: {
+              RCP: "Parou",
+            },
           },
         ],
       },
@@ -362,6 +424,7 @@ const quizes = [
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O RITMO É. O que fazer agora?",
             options: [
               "Desfibrilar com 200 J",
@@ -369,8 +432,9 @@ const quizes = [
               "Comprimir",
             ],
             correct: "Desfibrilar com 200 J",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
             question: "Depois do choque, o que fazer?",
@@ -380,8 +444,9 @@ const quizes = [
               "Comprimir",
             ],
             correct: "começar a RCP",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
             question: "RCP INICIADA. O que fazer agora?",
@@ -390,9 +455,10 @@ const quizes = [
               "Checar ritmo",
               "administrar epinefrina",
             ],
-            corrent: "Estabelecer o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            correct: "Estabelecer o Coach",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
             question: "COACH ATUANDO. O que fazer agora?",
@@ -402,30 +468,35 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Preparar epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O ritmo agora é. O que fazer agora?",
             options: ["Chocar", "administrar epinefrina", "comprimir"],
             correct: "Chocar",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
+            timer: 110,
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "RCP INICIADA. O que fazer agora?",
             options: [
               "Checar o Coach",
@@ -433,10 +504,12 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Administrar Epinefrina e Preparar 300 mg de Amiodarona",
@@ -444,30 +517,35 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Administrar Epinefrina e Preparar 300 mg de Amiodarona",
-            table_column: "Drogas",
-            set_value: "Epi administrada e Amio 300 prep",
+            table_values: {
+              Drogas: "Epi administrada e Amio 300 prep",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "FV",
+            timer: 10,
             question: "O ritmo ainda é. O que fazer agora?",
             options: ["Chocar", "administrar epinefrina", "comprimir"],
             correct: "Chocar",
-            table_column: "Choque",
-            set_value: "Feito",
+            table_values: {
+              Choque: "Feito",
+            },
           },
           {
+            timer: 110,
             question: "Depois do choque, o que fazer?",
             options: ["começar a RCP", "checar ritmo", "preparar epinefrina"],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "RCP INICIADA. O que fazer agora?",
             options: [
               "Checar o Coach",
@@ -475,10 +553,12 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Administrar Amiodarona 300 mg e Preparar Epinefrina",
@@ -486,16 +566,17 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Administrar Amiodarona 300 mg e Preparar Epinefrina",
-            table_column: "Drogas",
-            set_value: "Amio 300 administrada e Epi preparada",
+            table_values: {
+              Drogas: "Amio 300 administrada e Epi preparada",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "LR",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "Checar cabos, ganhos e derivações",
@@ -503,11 +584,13 @@ const quizes = [
               "Administrar epinefrina",
             ],
             correct: "Checar cabos, ganhos e derivações",
-            table_column: "Ritmo",
-            set_value: "LR",
+            table_values: {
+              Ritmo: "LR",
+            },
           },
           {
             ritmo: "AE",
+            timer: 10,
             question: "CHECADO TUDO e o ritmo virou. O que fazer agora?",
             options: [
               "checar pulso",
@@ -515,10 +598,12 @@ const quizes = [
               "Começar protocolo de RCE",
             ],
             correct: "checar pulso",
-            table_column: "Ritmo",
-            set_value: "LR -> AESP",
+            table_values: {
+              Ritmo: "LR -> AESP",
+            },
           },
           {
+            timer: 110,
             question: "NÃO TEM PULSO. O que fazer agora?",
             options: [
               "Começar RCP",
@@ -526,10 +611,12 @@ const quizes = [
               "Administrar Amiodarona",
             ],
             correct: "Começar RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "RCP INICIADA. O que fazer agora?",
             options: [
               "Checar o Coach",
@@ -537,10 +624,12 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Administrar Epinefrina",
@@ -548,23 +637,26 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Administrar Epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi administrada",
+            table_values: {
+              Drogas: "Epi administrada",
+            },
           },
           {
+            timer: "continue",
             question: "VOCÊ ESTÁ INDO BEM. O que ainda falta fazer?",
             options: ["Checar causas", "Parar RCP", "Fazer Amiodarona"],
             correct: "Checar causas",
-            table_column: "Outros",
-            set_value: "Causas",
+            table_values: {
+              Outros: "Causas",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "Checar pulso",
@@ -572,15 +664,17 @@ const quizes = [
               "Fazer epinefrina",
             ],
             correct: "Checar pulso",
-            table_column: "Ritmo",
-            set_value: "AECP",
+            table_values: {
+              Ritmo: "AECP",
+            },
           },
           {
             question: "TEM PULSO. O que fazer agora?",
             options: ["Iniciar protocolo de RCE", "Chocar", "Comprimir"],
             correct: "Iniciar protocolo de RCE",
-            table_column: "RCP",
-            set_value: "Parou",
+            table_values: {
+              RCP: "Parou",
+            },
           },
         ],
       },
@@ -595,6 +689,7 @@ const quizes = [
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "começar a RCP",
@@ -602,10 +697,14 @@ const quizes = [
               "Estabelecer o coach",
             ],
             correct: "começar a RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              Ritmo: 'AESP',
+              Choque: 'Não',
+              RCP: "Sim",
+            },
           },
           {
+            timer: 110,
             question: "RCP INICIADA. O que fazer agora?",
             options: [
               "Estabelecer o Coach",
@@ -613,10 +712,12 @@ const quizes = [
               "Checar o ritmo",
             ],
             correct: "Estabelecer o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Administrar Epinefrina",
@@ -624,15 +725,18 @@ const quizes = [
               "checar ritmo",
             ],
             correct: "Administrar Epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi administrada",
+            table_values: {
+              Drogas: "Epi administrada",
+            },
           },
           {
+            timer: "continue",
             question: "VOCÊ ESTÁ INDO BEM. O que ainda falta fazer?",
             options: ["Checar causas", "Parar RCP", "Fazer Amiodarona"],
             correct: "Checar causas",
-            table_column: "Outros",
-            set_value: "Causas",
+            table_values: {
+              Outros: "Causas",
+            },
           },
         ],
       },
@@ -640,6 +744,7 @@ const quizes = [
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "Checar pulso",
@@ -647,10 +752,12 @@ const quizes = [
               "Começar a RCP",
             ],
             correct: "Checar pulso",
-            table_column: "Ritmo",
-            set_value: "AESP",
+            table_values: {
+              Ritmo: "AESP",
+            },
           },
           {
+            timer: 110,
             question: "NÃO TEM PULSO. O que fazer agora?",
             options: [
               "Começar RCP",
@@ -658,10 +765,12 @@ const quizes = [
               "Começar os cuidados pós parada",
             ],
             correct: "Começar RCP",
-            table_column: "RCP",
-            set_value: "Sim",
+            table_values: {
+              RCP: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "RCP INICIADA. O que fazer agora?",
             options: [
               "Checar o Coach",
@@ -669,10 +778,12 @@ const quizes = [
               "administrar epinefrina",
             ],
             correct: "Checar o Coach",
-            table_column: "Coach",
-            set_value: "Sim",
+            table_values: {
+              Coach: "Sim",
+            },
           },
           {
+            timer: "continue",
             question: "COACH ATUANDO. O que fazer agora?",
             options: [
               "Preparar Epinefrina",
@@ -680,20 +791,26 @@ const quizes = [
               "Administrar Epinefrina",
             ],
             correct: "Preparar Epinefrina",
-            table_column: "Drogas",
-            set_value: "Epi preparada",
+            table_values: {
+              Drogas: "Epi preparada",
+            },
           },
           {
+            timer: "continue",
             question: "VOCÊ ESTÁ INDO BEM. O que ainda falta fazer?",
             options: ["Checar causas", "Parar RCP", "Fazer Amiodarona"],
+            correct: "Checar causas",
+            table_values: {
+              Outros: "Causas",
+            },
           },
         ],
       },
       {
-        dos_minutos: true,
         questions: [
           {
             ritmo: "AE",
+            timer: 10,
             question: "O ritmo é. O que fazer agora?",
             options: [
               "Checar pulso",
@@ -701,14 +818,17 @@ const quizes = [
               "Fazer epinefrina",
             ],
             correct: "Checar pulso",
-            table_column: "Ritmo",
-            set_value: "AECP",
+            table_values: {
+              Ritmo: "AECP",
+            },
           },
           {
             question: "TEM PULSO. O que fazer agora?",
             options: ["Iniciar protocolo de RCE", "Chocar", "Comprimir"],
-            table_column: "RCP",
-            set_value: "Parou",
+            correct: "Iniciar protocolo de RCE",
+            table_values: {
+              RCP: "Parou",
+            },
           },
         ],
       },

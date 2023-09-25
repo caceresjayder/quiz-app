@@ -25,7 +25,7 @@ function Table() {
             {table[1].Ciclo !== null ? (
               <p className="p-1 bg-green-400">{table[1].Ciclo}</p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -34,7 +34,7 @@ function Table() {
                 {table[1].Ritmo}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -43,7 +43,7 @@ function Table() {
                 {table[1].Choque}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -52,7 +52,7 @@ function Table() {
                 {table[1].RCP}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -61,7 +61,7 @@ function Table() {
                 {table[1].Coach}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -70,7 +70,7 @@ function Table() {
                 {table[1].Drogas}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -79,7 +79,7 @@ function Table() {
                 {table[1].Outros}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
         </tr>
@@ -88,7 +88,7 @@ function Table() {
             {table[2].Ciclo !== null ? (
               <p className="p-1 bg-green-400">{table[2].Ciclo}</p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -97,7 +97,7 @@ function Table() {
                 {table[2].Ritmo}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -106,7 +106,7 @@ function Table() {
                 {table[2].Choque}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -115,7 +115,7 @@ function Table() {
                 {table[2].RCP}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -124,7 +124,7 @@ function Table() {
                 {table[2].Coach}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -133,7 +133,7 @@ function Table() {
                 {table[2].Drogas}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -142,7 +142,7 @@ function Table() {
                 {table[2].Outros}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
         </tr>
@@ -151,7 +151,7 @@ function Table() {
             {table[3].Ciclo !== null ? (
               <p className="p-1 bg-green-400">{table[3].Ciclo}</p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -160,7 +160,7 @@ function Table() {
                 {table[3].Ritmo}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -169,7 +169,7 @@ function Table() {
                 {table[3].Choque}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -178,7 +178,7 @@ function Table() {
                 {table[3].RCP}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -187,7 +187,7 @@ function Table() {
                 {table[3].Coach}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -196,7 +196,7 @@ function Table() {
                 {table[3].Drogas}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -205,7 +205,7 @@ function Table() {
                 {table[3].Outros}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
         </tr>
@@ -214,7 +214,7 @@ function Table() {
             {table[4].Ciclo !== null ? (
               <p className="p-1 bg-green-400">{table[4].Ciclo}</p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -223,7 +223,7 @@ function Table() {
                 {table[4].Ritmo}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -232,7 +232,7 @@ function Table() {
                 {table[4].Choque}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -241,7 +241,7 @@ function Table() {
                 {table[4].RCP}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -250,7 +250,7 @@ function Table() {
                 {table[4].Coach}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -259,7 +259,7 @@ function Table() {
                 {table[4].Drogas}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
           <td className="py-2">
@@ -268,7 +268,7 @@ function Table() {
                 {table[4].Outros}
               </p>
             ) : (
-              "N/A"
+              ""
             )}
           </td>
         </tr>

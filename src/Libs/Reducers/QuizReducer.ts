@@ -1,5 +1,5 @@
 import quizes from "@/data/quizes";
-import QuizState, { quest } from "../States/QuizState";
+import QuizState, { Table, TableRow, quest } from "../States/QuizState";
 import { ViewsReducerActions } from "./ViewsReducer";
 import InitialState from "../States";
 
@@ -32,8 +32,7 @@ export type QuizReducerActions =
   | {
       type: QuizReducerTypes.SET_TABLE_VALUE;
       payload: {
-        column: string;
-        value: string;
+        table_values: Partial<TableRow>;
         ciclo: 1 | 2 | 3 | 4;
       };
     }
@@ -43,8 +42,15 @@ export type QuizReducerActions =
   | {
       type: QuizReducerTypes.RESTART;
       payload: {
-        quest_idx: number
+        quest_idx: number;
       };
+    }
+  | {
+      type: QuizReducerTypes.SET_COUNTDOWN;
+      payload: {
+        countdown: Date
+      }
+
     };
 
 export enum QuizReducerTypes {
@@ -56,6 +62,7 @@ export enum QuizReducerTypes {
   SET_TABLE_VALUE = "SET_TABLE_VALUE",
   RESET = "RESET",
   RESTART = "RESTART",
+  SET_COUNTDOWN = "SET_COUNTDOWN",
 }
 
 
@@ -78,7 +85,7 @@ const QuizReducer = (state: typeof QuizState, action: QuizReducerActions | Views
                 quiz_actual: action.payload.questIdx
             }
         case QuizReducerTypes.SET_TABLE_VALUE:
-            const {column, value, ciclo} = action.payload
+            const {table_values, ciclo} = action.payload
             return {
                 ...state,
                 table: {
@@ -86,7 +93,7 @@ const QuizReducer = (state: typeof QuizState, action: QuizReducerActions | Views
                   [ciclo] : {
                     ...state.table[ciclo],
                     Ciclo : ciclo,
-                    [column] : value
+                    ...table_values
                   }
                 }
             }
@@ -100,6 +107,12 @@ const QuizReducer = (state: typeof QuizState, action: QuizReducerActions | Views
                 ...state,
                 win: !state.win
             }
+        case QuizReducerTypes.SET_COUNTDOWN:
+        const { countdown} = action.payload  
+          return {
+            ...state,
+            countdown: countdown
+          }
         case QuizReducerTypes.RESTART:
           return {
             ...QuizState,

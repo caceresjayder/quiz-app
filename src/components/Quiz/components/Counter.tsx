@@ -1,4 +1,4 @@
-import React, { useContext, useMemo} from 'react'
+import React, { useContext, useEffect, useMemo, useState} from 'react'
 import dayjs from 'dayjs';
 import relativetime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration'
@@ -11,28 +11,61 @@ dayjs.extend(duration);
 
 
 function Counter() {
-  const {dispatch} = useContext(Context)
-  const deadline = useMemo(() => Date.now() + 119000,[])
+  const {dispatch, state} = useContext(Context)
+  const { ciclo_actual, quest, quiz_actual, loose, win, countdown } =
+    state.quiz_state;
+  const { ciclos } = quest;
+  const { questions } = ciclos[ciclo_actual];
+  const { timer } =
+    questions[quiz_actual];
+
+
 const style = {
   "--value": 100,
   "--size": "6rem",
   "--thickness": "2px",
 } as React.CSSProperties;
 
-  // ...
-  return (
-    <div
-      className="radial-progress bg-green-400 text-white border-4 border-green-400"
-      style={style}
-    >
-      <Countdown
-        date={deadline}
-        onComplete={() => dispatch({ type: QuizReducerTypes.SET_LOOSE })}
-        renderer={(props) => <div>{props.minutes}:{props.seconds}</div>}
-        zeroPadTime={2}
-      />
-    </div>
-  );
+
+useEffect(() => {
+  if (timer && timer === "continue") {
+    // No actualizamos `deadline` si `timer` es 'continue'
+    return;
+  }
+  else if(timer){
+    const newDeadline = Date.now() + (timer * 1000);
+    dispatch({
+      type: QuizReducerTypes.SET_COUNTDOWN,
+      payload: { countdown: newDeadline },
+    });
+  }
+
+}, [timer, dispatch]);
+
+  if(timer && !loose && !win){
+      return (
+        <Countdown
+          date={countdown ?? Date.now() + +timer * 1000}
+          precision={3}
+          onComplete={() => dispatch({ type: QuizReducerTypes.SET_LOOSE })}
+          renderer={(props) => (
+            <div>
+              <div
+                className={`radial-progress ${
+                  props.total < (+timer > 10 ? 30000 : 5000)
+                    ? "bg-red-400 border-red-400 vibrate-1"
+                    : "bg-green-400 border-green-400"
+                }  text-white border-4`}
+                style={style}
+              >
+                {props.minutes}:{props.seconds}
+              </div>
+            </div>
+          )}
+          zeroPadTime={2}
+        />
+      );
+  }
 }
 
 export default Counter
