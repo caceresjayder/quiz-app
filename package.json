@@ -1,7 +1,7 @@
 {
   "name": "quiz-app",
   "version": "0.1.0",
-  "private": true,
+  "author": "Jayder Caceres <https://github.com/caceresjayder>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

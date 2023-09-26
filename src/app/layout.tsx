@@ -3,6 +3,7 @@ import AppContext from '@/Libs/Context'
 import '../styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body className={inter.className}>
-        <AppContext>
-        {children}
-        </AppContext>
-        </body>
+        <AppContext>{children}</AppContext>
+      </body>
     </html>
-  )
+  );
 }
