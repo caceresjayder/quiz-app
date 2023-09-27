@@ -49,7 +49,7 @@ function QuizSelection() {
   return (
     <div className="w-full">
       <h2 className="text-lg font-bold h-16 p-4 bg-accent">
-        Seleciona um Quiz...
+        Selecione um caso para jogar...
       </h2>
       <div className="flex flex-wrap h-fit justify-center">
         {state.quizes.map((caso: any, index) => {
