@@ -101,9 +101,9 @@ function Landing() {
             </svg>
           </button>
         </div>
-        <div id="banners" className="w-full flex flex-col p-4 gap-4">
-          <div className="card card-side w-full bg-base-100 shadow-xl hover:scale-110 transition-all duration-500 hover:z-10">
-            <figure className="relative h-52 w-72">
+        <div id="banners" className="w-full flex flex-col p-8 sm:p-4 gap-4">
+          <div className="card sm:card-side w-full bg-base-100 shadow-xl hover:scale-110 transition-all duration-500 hover:z-10">
+            <figure className="relative h-72 sm:h-52 w-full sm:w-72">
               <Image
                 src={CoursePhoto}
                 fill
@@ -115,8 +115,8 @@ function Landing() {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">
-                Curso de Electrocardiograma com <br /> Dr. Jose Alencar
+              <h2 className="card-title text-md">
+                Curso de Electrocardiograma com Dr. Jose Alencar
               </h2>
               <p>Online | 30 horas | Certificado</p>
               <div className="card-actions justify-end">

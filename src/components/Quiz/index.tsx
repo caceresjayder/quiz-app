@@ -90,7 +90,7 @@ const Quiz = () => {
       </div>
       <div className="h-fit px-4">
         <div className="w-full h-32 flex justify-between mb-4">
-          <div className="w-3/4 bg-accent rounded flex justify-between items-center">
+          <div className="w-full bg-accent rounded flex justify-between items-center">
             <h2 className="text-center w-3/4 font-bold text-green-900">
               {question}
             </h2>
@@ -137,15 +137,13 @@ const Quiz = () => {
               )}
             </div>
           </div>
-          <div className="flex flex-col w-1/4 items-center justify-center">
             <Counter />
-          </div>
         </div>
 
         <form
           id="options-form"
           onSubmit={(e) => handleResponse(e)}
-          className="border rounded-lg mx-2 h-32 flex justify-evenly p-4 mb-4"
+          className="border rounded-lg mx-2 h-fit flex justify-evenly p-4 mb-4"
         >
           {options
             .sort(() => Math.random() - 0.5)

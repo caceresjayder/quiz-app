@@ -34,7 +34,7 @@ const style = {
           precision={3}
           onComplete={() => dispatch({ type: QuizReducerTypes.SET_LOOSE })}
           renderer={(props) => (
-            <div>
+            <div className="flex flex-col w-1/4 items-center justify-center">
               <div
                 className={`radial-progress ${
                   //@ts-ignore

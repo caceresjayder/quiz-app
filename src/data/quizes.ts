@@ -70,7 +70,6 @@ const quizes: quizes = [
         questions: [
           {
             ritmo: "FV",
-            timer: 10,
             question:
               "DOIS MINUTOS, “TROCA MAS NÃO TOCA”. O ritmo é esse. o que fazer?",
             options: [
@@ -459,7 +458,7 @@ const quizes: quizes = [
             options: [
               "Começar a RCP",
               "Cardioverter sincronizado com 100 J",
-              "Comprimir",
+              "Administrar Epinefrina",
             ],
             correct: "Começar a RCP",
             table_values: {
@@ -547,7 +546,6 @@ const quizes: quizes = [
         questions: [
           {
             ritmo: "FV",
-            timer: 10,
             question:
               "DOIS MINUTOS, “TROCA MAS NÃO TOCA”. O ritmo é esse. O que fazer agora?",
             options: [
@@ -599,7 +597,6 @@ const quizes: quizes = [
         questions: [
           {
             ritmo: "LR",
-            timer: 10,
             question:
               "DOIS MINUTOS, “TROCA MAS NÃO TOCA”. O ritmo é esse. O que fazer agora?",
             options: [
@@ -614,7 +611,6 @@ const quizes: quizes = [
           },
           {
             ritmo: "AE",
-            timer: 15,
             question:
               "O COACH CORRIGIU A DERIVAÇÃO PARA D2. O ritmo agora é esse. O que fazer agora?",
             options: [
@@ -678,7 +674,6 @@ const quizes: quizes = [
         questions: [
           {
             ritmo: "AE",
-            timer: 10,
             question:
               "DOIS MINUTOS, “TROCA MAS NÃO TOCA”. O ritmo é esse. O que fazer agora?",
             options: [
