@@ -462,7 +462,7 @@ const quizes: quizes = [
             ],
             correct: "Começar a RCP",
             table_values: {
-              Choque: "Feito",
+              RCP: "Sim",
             },
           },
           {
